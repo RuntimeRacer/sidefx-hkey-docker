@@ -50,9 +50,11 @@ COPY startHoudiniLicenseServer.sh /root/
 
 # Install.
 # build-essential software-properties-common git python3-pip python3-dev
-RUN chmod +x /root/startHoudiniLicenseServer.sh \
-  && rm /usr/lib/sesi/licenses.disabled \
-  && touch /usr/lib/sesi/licenses
+RUN chmod +x /root/startHoudiniLicenseServer.sh && rm /usr/lib/sesi/licenses.disabled
+#&& touch /usr/lib/sesi/licenses
+
+# HOTFIX: Copy over license file
+COPY licenses /usr/lib/sesi/licenses
 
 # Set environment variables.
 ENV HOME /root
